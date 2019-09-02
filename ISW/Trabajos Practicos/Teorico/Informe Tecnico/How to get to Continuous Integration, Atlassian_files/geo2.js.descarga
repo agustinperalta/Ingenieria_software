@@ -1,0 +1,16 @@
+(function(){
+  window['optimizely'] = window['optimizely'] || [];
+  window['optimizely'].push(['activateGeoDelayedExperiments', {
+    'location':{
+      'city': "BUENOSAIRES",
+      'continent': "SA",
+      'country': "AR",
+      'region': ""
+    },
+    'ip':"181.165.46.2"
+  }]);
+})
+//
+()
+
+;

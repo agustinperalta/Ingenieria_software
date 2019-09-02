@@ -1,0 +1,27 @@
+function piResponse() {
+		piSetCookie('visitor_id548382', '242351778', 3650);
+			piSetCookie('visitor_id548382-hash', '04be4d41a3a67c1db71834f5d92b79d758ae878621cf1e73e25caf259263ece8c81ae1bfdc2619b845d0601b2af1b2dc00f4c878', 3650);
+		
+		if (document.location.protocol != "https:" || (document.location.protocol == "https:" && true)) {
+		var analytics_link = document.location.protocol + "//" + "pages.atlassian.com/analytics?";
+		pi.tracker.visitor_id='242351778';
+
+				pi.tracker.visitor_id_sign='04be4d41a3a67c1db71834f5d92b79d758ae878621cf1e73e25caf259263ece8c81ae1bfdc2619b845d0601b2af1b2dc00f4c878';
+		
+		var variables = 'conly=true';
+		for (property in pi.tracker) {
+					variables += "&" + property + "=" + encodeURIComponent(pi.tracker[property]);
+				}
+		var headID = document.getElementsByTagName("head")[0];
+		piScriptObj[piScriptNum] = document.createElement('script');
+		piScriptObj[piScriptNum].type = 'text/javascript';
+		piScriptObj[piScriptNum].src = analytics_link + variables;
+		headID.appendChild(piScriptObj[piScriptNum]);
+		piScriptObj[piScriptNum].onload = function() { return; }
+	}
+	}
+piResponse();
+
+
+
+
