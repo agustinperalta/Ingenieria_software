@@ -6,23 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
+
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <link href="Content/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
 
+    <link href="Content/Mapa.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <style type="text/css">
+        .log {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            height: 150px;
+            width: 250px;
+            overflow: scroll;
+            background: white;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 12px;
+        }
+
+        .log-entry {
+            padding: 5px;
+            border-bottom: 1px solid #d0d9e9;
+        }
+
+            .log-entry:nth-child(odd) {
+                background-color: #e1e7f1;
+            }
+    </style>
     <title>Hello, world!</title>
 </head>
-<body>
+<body ng-app="PedidoApp" ng-controller="PedidoController">
     <div class="col-12 ">
         <nav aria-label="breadcrumb">
             <div class="container">
-       
 
-            <ol class="breadcrumb alert alert-info">
-                <li class="breadcrumb-item active" aria-current="page"><h4><b>MI PEDIDO</b></h4></li>
-                <li class="float-right ml-auto">&nbsp;<i class="fa fa-2x fa-shopping-bag"></i></li>
-            </ol>
-        
-           
+
+                <ol class="breadcrumb alert alert-info">
+                    <li class="breadcrumb-item active" aria-current="page"><h4><b>MI PEDIDO</b></h4></li>
+                    <li class="float-right ml-auto">&nbsp;<i class="fa fa-2x fa-shopping-bag"></i></li>
+                </ol>
+
+
             </div>
 
         </nav>
@@ -43,63 +74,71 @@
             <div class="form-row ml-2">
                 <div class="col-6 ">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <label class="form-check-label" for="exampleRadios1" ng-model="modoManual" ng-click="chk">
                         Ingresar Dirección
                     </label>
                 </div>
                 <div class="col-6">
                     <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <label class="form-check-label" for="exampleRadios1" ng-model="modoMap" ng-click="chk">
                         Utilizar Mapa
                     </label>
                 </div>
             </div>
-            <div class="form-row mt-2">
-                <div class="col-12">
-                    <label for="Calle" class=""><b>Calle</b>(*)</label>
+            <div ng-show="!modoMapa">
+
+                <div class="form-row mt-2">
+                    <div class="col-12">
+                        <label for="Calle" class=""><b>Calle</b>(*)</label>
+                    </div>
+                </div>
+                <div class="form-row mt-1 ">
+                    <div class="col-10">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col-12">
+                        <label for="Numero" class=""><b>Numero</b>(*)</label>
+                    </div>
+                </div>
+                <div class="form-row mt-1 ">
+                    <div class="col-10">
+                        <input class="form-control" type="text" />
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col-12">
+                        <label for="Ciudad" class=""><b>Ciudad</b>(*)</label>
+                    </div>
+                </div>
+                <div class="form-row mt-1 ">
+                    <div class="col-10">
+                        <select class="custom-select">
+                            <option selected>Elija una ciudad</option>
+                            <option value="1">Córdoba</option>
+                            <option value="2">Villa María</option>
+                            <option value="3">Carlos Paz</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="col-12">
+                        <label for="Ref" class=""><b>Referencia</b>(Opcional)</label>
+                    </div>
+                </div>
+                <div class="form-row mt-1 ">
+                    <div class="col-10">
+                        <input class="form-control" type="text" />
+                    </div>
                 </div>
             </div>
-            <div class="form-row mt-1 ">
-                <div class="col-10">
-                    <input class="form-control" type="text" />
-                </div>
+            <div class="row mt-2" ng-show="modoMapa">
+                <div class="col-1"></div>
+                <div id="map" width="250" height="350"></div>
+
             </div>
-            <div class="form-row mt-2">
-                <div class="col-12">
-                    <label for="Numero" class=""><b>Numero</b>(*)</label>
-                </div>
-            </div>
-            <div class="form-row mt-1 ">
-                <div class="col-10">
-                    <input class="form-control" type="text" />
-                </div>
-            </div>
-            <div class="form-row mt-2">
-                <div class="col-12">
-                    <label for="Ciudad" class=""><b>Ciudad</b>(*)</label>
-                </div>
-            </div>
-            <div class="form-row mt-1 ">
-                <div class="col-10">
-                    <select class="custom-select">
-                        <option selected>Elija una ciudad</option>
-                        <option value="1">Córdoba</option>
-                        <option value="2">Villa María</option>
-                        <option value="3">Carlos Paz</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-row mt-2">
-                <div class="col-12">
-                    <label for="Ref" class=""><b>Referencia</b>(Opcional)</label>
-                </div>
-            </div>
-            <div class="form-row mt-1 ">
-                <div class="col-10">
-                    <input class="form-control" type="text" />
-                </div>
-            </div>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3404.257097286202!2d-64.22309072885855!3d-31.434588331682676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1567716888593!5m2!1ses!2sar" width="250" height="350" frameborder="0" style="border:0;" allowfullscreen="" class="col-12 mt-2"></iframe>
+            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3404.257097286202!2d-64.22309072885855!3d-31.434588331682676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1567716888593!5m2!1ses!2sar" width="250" height="350" frameborder="0" style="border:0;" allowfullscreen="" class="col-12 mt-2"></iframe>-->
 
             <div class="form-row mt-2">
                 <div class="col-12 col-form-label text-center mb-2 alert alert-info"><b>Dirección Entrega</b></div>
@@ -195,7 +234,7 @@
             </div>
             <div class="text-center">
 
-               <!-- <button type="button" class="btn btn-success mt-2" onclick="href="Tarjeta.html">&nbsp;Siguiente&nbsp;<i class="fa fa-1x fa-arrow-circle-o-right"></i></button>-->
+                <!-- <button type="button" class="btn btn-success mt-2" onclick="href="Tarjeta.html">&nbsp;Siguiente&nbsp;<i class="fa fa-1x fa-arrow-circle-o-right"></i></button>-->
                 <a class="btn btn-success mt-2" href="Tarjeta.html">Siguiente&nbsp;<i class="fa fa-1x fa-arrow-circle-o-right"> </i></a>
             </div>
         </form>
@@ -206,7 +245,7 @@
     <script src="Scripts/jquery-3.4.1.slim.js"></script>
     <script src="Scripts/bootstrap.js"></script>
     <script src="Scripts/angular.js"></script>
-  
-
+    <script src="Scripts/Mapa.js"></script>
+    <script src="Scripts/Pedidos.js"></script>
 </body>
 </html>
