@@ -60,27 +60,30 @@
     </div>
     <div class="container">
         <form class=" p-2" name="FormPedido">
+
             <div class="form-row">
                 <div class="col-12 col-form-label text-center mb-2 alert alert-info"><b>¿Qué desea que le llevemos?</b></div>
-                <textarea class="form-control col-10" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control col-10" id="txtDescripcion" rows="3" ng-required="true"></textarea>
                 <label for="file-upload" class="subir mt-4 ml-auto">
                     <i class="fa fa-2x fa-image"></i>
                 </label>
                 <input id="file-upload" onchange='cambiar()' type="file" style='display: none;' />
+                <p class="alert-danger" ng-show="FormPedido.txtDescripcion.$touched">Ingrese Descripción</p>
             </div>
+
             <div class="form-row mt-2">
                 <div class="col-12 col-form-label text-center mb-2 alert alert-info"><b>Dirección Comercio</b></div>
             </div>
             <div class="form-row ml-2">
                 <div class="col-6 ">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1" ng-model="modoManual" ng-click="chk">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <label class="form-check-label" for="exampleRadios1"  ng-click="chk_false()">
                         Ingresar Dirección
                     </label>
                 </div>
                 <div class="col-6">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1" ng-model="modoMap" ng-click="chk">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                    <label class="form-check-label" for="exampleRadios2"  ng-click="chk_true()">
                         Utilizar Mapa
                     </label>
                 </div>
@@ -94,7 +97,7 @@
                 </div>
                 <div class="form-row mt-1 ">
                     <div class="col-10">
-                        <input class="form-control" type="text" />
+                        <input class="form-control" type="text" ng-required="true"/>
                     </div>
                 </div>
                 <div class="form-row mt-2">
@@ -136,6 +139,9 @@
             <div class="row mt-2" ng-show="modoMapa">
                 <div class="col-1"></div>
                 <div id="map" width="250" height="350"></div>
+                <div id="coordenadas"></div>
+
+
 
             </div>
             <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3404.257097286202!2d-64.22309072885855!3d-31.434588331682676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1567716888593!5m2!1ses!2sar" width="250" height="350" frameborder="0" style="border:0;" allowfullscreen="" class="col-12 mt-2"></iframe>-->
@@ -232,20 +238,22 @@
                     </select>
                 </div>
             </div>
-            <div class="text-center">
+            <div class="text-center my-3">
 
                 <!-- <button type="button" class="btn btn-success mt-2" onclick="href="Tarjeta.html">&nbsp;Siguiente&nbsp;<i class="fa fa-1x fa-arrow-circle-o-right"></i></button>-->
-                <a class="btn btn-success mt-2" href="Tarjeta.html">Siguiente&nbsp;<i class="fa fa-1x fa-arrow-circle-o-right"> </i></a>
+                <!--<a class="btn btn-success mt-2" href="Tarjeta.html">Siguiente&nbsp;<i class="fa fa-1x fa-arrow-circle-o-right"> </i></a> -->
+
+                <button type="button" class="btn btn-primary">Siguiente</button>
             </div>
         </form>
 
     </div>
     <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="Scripts/jquery-3.4.1.slim.js"></script>
-    <script src="Scripts/bootstrap.js"></script>
-    <script src="Scripts/angular.js"></script>
-    <script src="Scripts/Mapa.js"></script>
-    <script src="Scripts/Pedidos.js"></script>
+                <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+                <script src="Scripts/jquery-3.4.1.slim.js"></script>
+                <script src="Scripts/bootstrap.js"></script>
+                <script src="Scripts/angular.js"></script>
+                <script src="Scripts/Mapa.js"></script>
+                <script src="Scripts/Pedidos.js"></script>
 </body>
 </html>

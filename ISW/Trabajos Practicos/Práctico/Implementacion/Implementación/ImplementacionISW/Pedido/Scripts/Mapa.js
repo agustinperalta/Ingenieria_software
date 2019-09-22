@@ -3,7 +3,9 @@
  * Clicking on the map displays an alert box containing the latitude and longitude
  * of the location pressed.
  * @param  {H.Map} map      A HERE Map instance within the application
- */
+*/
+var coordenadas = [];
+
 function setUpClickListener(map) {
     // Attach an event listener to map display
     // obtain the coordinates and display in an alert box.
@@ -14,6 +16,11 @@ function setUpClickListener(map) {
             ((coord.lat > 0) ? ' N' : ' S') +
             ' ' + Math.abs(coord.lng.toFixed(4)) +
             ((coord.lng > 0) ? ' E' : ' O'));
+        // Extra oara mostrr coordenadas
+        coordenadas = [coord.lat.toFixed(4), coord.lng.toFixed(4)];
+        document.getElementById("coordenadas").innerHTML =
+            "Coordenadas: " + coordenadas[0] + ((coord.lat > 0) ? ' N' : ' S') + ", " + coordenadas[1] + ((coord.lng > 0) ? ' E' : ' O');
+
     });
 }
 
@@ -55,7 +62,7 @@ function logEvent(str) {
     var entry = document.createElement('label');
     entry.className = 'log-entry';
     entry.textContent = str;
-    alert(entry.textContent);
+    //alert(entry.textContent);
 }
 
 function moveMapToCordoba(map) {
@@ -67,3 +74,4 @@ window.onload = function () {
     moveMapToCordoba(map);
 }
 setUpClickListener(map);
+

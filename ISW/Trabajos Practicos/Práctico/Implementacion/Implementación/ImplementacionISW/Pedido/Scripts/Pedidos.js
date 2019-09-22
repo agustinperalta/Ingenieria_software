@@ -1,15 +1,12 @@
 ﻿var app = angular.module("PedidoApp", []);
 app.controller("PedidoController", function ($scope) {
-    $scope.modoMapa = false;
+    $scope.modoMapa = true;
 
-    $scope.chk = function () {
-
-        if ($scope.modoMap) {
-            $scope.modoMapa = false;
-        }
-        if ($scope.modoManual) {
-            $scope.modoMapa = true;
-        }
+    $scope.chk_true = function () {
+        $scope.modoMapa = true;
     };
-
+    $scope.chk_false = function () {
+        $scope.modoMapa = false;
+    };
+    
 });

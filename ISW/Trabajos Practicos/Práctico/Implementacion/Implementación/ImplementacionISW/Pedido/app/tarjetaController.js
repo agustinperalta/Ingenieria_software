@@ -10,7 +10,7 @@ angular
 
         }
 
-        $scope.nro = 4000000000000000;
+        $scope.nro;
         $scope.nroVisa = true;
         $scope.aceptado= "";
         $scope.codigo="";
