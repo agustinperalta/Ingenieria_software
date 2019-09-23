@@ -38,24 +38,24 @@ app.controller("PedidoController", function ($scope) {
         }
     };
 
+    // VALIDACIONES para pasar a la pantalla TARJETA
     $scope.validar = function () {
         $scope.ok = true;
         
-
         // DIRECC ENTREGA
         if ($scope.cdadEntrega == null) {
-            $('#cdadEntrega').focus();
             $('#cdadEntrega').addClass("ng-invalid", "ng-touched");
+            $('#cdadEntrega').focus();
             $scope.ok = false;
         };
         if ($scope.nroEntrega == null) {
-            $('#nroEntrega').focus();
             $('#nroEntrega').addClass("ng-invalid", "ng-touched");
+            $('#nroEntrega').focus();
             $scope.ok = false;
         };
         if ($scope.calleEntrega == null ){
-            $('#calleEntrega').focus();
             $('#calleEntrega').addClass("ng-invalid", "ng-touched");
+            $('#calleEntrega').focus();
             $scope.ok = false;
         };
         
@@ -64,18 +64,18 @@ app.controller("PedidoController", function ($scope) {
         if (!$scope.modoMapa) {
             console.log("not modo mapa");
             if ($scope.cdadComercio == null) {
-                $('#cdadComercio').focus();
                 $('#cdadComercio').addClass("ng-invalid", "ng-touched");
+                $('#cdadComercio').focus();
                 $scope.ok = false;
             };
             if ($scope.nroComercio == null) {
-                $('#nroComercio').focus();
                 $('#nroComercio').addClass("ng-invalid", "ng-touched");
+                $('#nroComercio').focus();
                 $scope.ok = false;
             };
             if ($scope.calleComercio == null ){
-                $('#calleComercio').focus();
                 $('#calleComercio').addClass("ng-invalid", "ng-touched");
+                $('#calleComercio').focus();
                 $scope.ok = false;
             };
         };
@@ -90,8 +90,8 @@ app.controller("PedidoController", function ($scope) {
 
         // DESCRIPCION
         if ($scope.desc == null) {
-            $('#desc').focus();
             $('#desc').addClass("touched");
+            $('#desc').focus();
             $scope.ok = false;
         }; 
 

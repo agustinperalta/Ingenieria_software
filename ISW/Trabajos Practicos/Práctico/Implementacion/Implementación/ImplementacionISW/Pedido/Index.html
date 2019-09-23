@@ -130,29 +130,23 @@
             </div>
 
             <!--MODO MAPA-->
-            <div class="row mt-2" ng-show="modoMapa">
-                <div class="col-1"></div>
-                <div id="map" width="250" height="350"></div>
-                <div class="form-row mt-1" ng-show="modoMapa">
-                    <div class="ml-5">
+            <div class="my-1" ng-show="modoMapa">
+                <div class="offset-1" id="map" width="250" height="350"></div>
+                <div class="form-row mt-1">
+                    <div class="form-group ml-4" ng-class="{'has-error': (FormPedido.coordenadas.$invalid && FormPedido.coordenadas.$touched)}">
+                        <label><b>Coordenadas</b>(*)</label>
                         <input id="coordenadas" name="coordenadas" ng-model="coordenadas" class="form-control" type="text" required />
+                        <label class="control-label" ng-show="FormPedido.coordenadas.$error.required && FormPedido.coordenadas.$touched">
+                            Ingrese punto en el mapa
+                        </label>
                     </div>
-                    <label class="control-label" ng-show="FormPedido.coordenadas.$error.required && FormPedido.coordenadas.$touched">
-                        Ingrese punto en el mapa
-                    </label>
                 </div>
             </div>
-
-
-
+            
+ <!--ENTREGA-->
             <div class="form-row mt-2">
                 <div class="col-12 col-form-label text-center mb-2 alert alert-info"><b>Dirección Entrega</b></div>
             </div>
-
-
-
-
- <!--ENTREGA-->
             <div class="form-group col-md-12" ng-class="{'has-error': (FormPedido.calleEntrega.$invalid && FormPedido.calleEntrega.$touched)}">
                 <label><b>Calle</b>(*)</label>
                 <input class="form-control" type="text" id="calleEntrega" name="calleEntrega" ng-model="calleEntrega" required />
