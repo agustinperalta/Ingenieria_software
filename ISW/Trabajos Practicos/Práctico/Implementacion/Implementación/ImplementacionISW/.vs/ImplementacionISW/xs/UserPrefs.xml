@@ -1,11 +1,12 @@
 ﻿<Properties StartupConfiguration="{A79F7EC7-EE04-4458-B46F-4426373CFC3C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Pedido/Index.html">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Pedido/Tarjeta.html">
     <Files>
-      <File FileName="Pedido/Index.html" Line="100" Column="85" />
-      <File FileName="Pedido/Scripts/Pedidos.js" Line="11" Column="5" />
-      <File FileName="Pedido/Tarjeta.html" Line="1" Column="1" />
-      <File FileName="Pedido/app/tarjetaController.js" Line="13" Column="20" />
-      <File FileName="Pedido/Scripts/Mapa.js" Line="77" Column="1" />
+      <File FileName="Pedido/Index.html" Line="43" Column="18" />
+      <File FileName="Pedido/Scripts/Pedidos.js" Line="43" Column="9" />
+      <File FileName="Pedido/Tarjeta.html" Line="98" Column="73" />
+      <File FileName="Pedido/app/tarjetaController.js" Line="65" Column="15" />
+      <File FileName="Pedido/Scripts/Mapa.js" Line="19" Column="52" />
+      <File FileName="Pedido/Content/Site.css" Line="7" Column="22" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,8 +14,9 @@
           <Node name="ImplementacionISW" expanded="True">
             <Node name="Pedido" expanded="True">
               <Node name="app" expanded="True" />
+              <Node name="Content" expanded="True" />
               <Node name="Scripts" expanded="True" />
-              <Node name="Index.html" selected="True" />
+              <Node name="Tarjeta.html" selected="True" />
             </Node>
           </Node>
         </State>

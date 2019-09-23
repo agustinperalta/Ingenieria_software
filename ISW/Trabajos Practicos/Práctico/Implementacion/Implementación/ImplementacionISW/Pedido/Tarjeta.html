@@ -1,7 +1,7 @@
 ﻿
 <!DOCTYPE html>
 <html lang="en" ng-app="tarjetaVisa" ng-controller="tarjetaCtrl">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,38 +9,44 @@
     <title>Pago con tarjeta</title>
 
     <link rel="stylesheet" href="Content/bootstrap.css" />
+    <link rel="stylesheet" href="Content/Site.css" />
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">-->
 
 
-  </head>
+</head>
   <body >
         
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+        <div class="mx-2">
+            <div class="">
                 <div class="panel panel-info">
-                    <div class="pull-right">
-                            <img src="Imagenes/Visa-2014-logo-blue.png" class="img-responsive" width="50" height="250"> 
+
+                    <div class="form-group">
+                        <div class="col-12 col-form-label text-center mb-2 p-0 alert alert-info"><b>Ingrese su tarjeta</b>
+                        <img src="Imagenes/Visa-2014-logo-blue.png" class="img-responsive" width="50" height="50">
                         </div>
-                    <div class="panel-heading">
-                            <h3 class="panel-title">Ingrese su tarjeta</h3>
-            </div>
-                    
+                    </div>
+
+                    <div class="m-4" ng-show="mostrarResultado">
+                        <div class="alert" ng-class="{'alert-success': aceptado, 'alert-danger': !aceptado}">
+                            {{mensaje}}
+                        </div>
+                    </div>
             <div class="panel-body">
                         <form novalidate name="myForm" class="form-horizontal" >
 
                                 <div class="form-group col-md-12" ng-class="{'has-error': (myForm.nombre.$invalid && myForm.nombre.$touched)}">
-                                        <label>Nombre titular</label>
-                                        <input class="form-control" type="text" name="nombre" placeholder="Nombre del titular" ng-model="nombre" required/>
-                                <label class="control-label" ng-show="myForm.nombre.$error.required && myForm.nombre.$touched">
-                                                Se requiere nombre del titular.
-                                </label>
-                              </div>
+                                    <label><b> Nombre del Titular </b></label>
+                                    <input class="form-control" type="text" name="nombre" ng-model="nombre" required/>
+                                    <label class="control-label" ng-show="myForm.nombre.$error.required && myForm.nombre.$touched">
+                                        Se requiere nombre del titular.
+                                    </label>
+                                </div>
                             
                             <div class="form-group col-md-12" ng-class="{'has-error': (myForm.nroDoc.$invalid && myForm.nroDoc.$touched)}">
-                                <label>DNI titular</label>
+                                <label><b>DNI titular </b></label>
                                 <span>
-                                    <input class="form-control" type="number" name="nroDoc" placeholder="Nro de documento" ng-model="nroDoc" ng-maxlength="8" required/>
+                                    <input class="form-control" type="number" name="nroDoc" ng-model="nroDoc" ng-maxlength="8" required/>
                                     <label class="control-label" ng-show="(myForm.nroDoc.$error.required && myForm.nroDoc.$touched)">
                                             Ingrese documento del titular.
                                     </label>
@@ -49,31 +55,47 @@
                               </div>
                             
                               <div class="form-group col-md-12" ng-class="{'has-error': (myForm.nroDoc.$invalid && myForm.nroDoc.$touched) || !nroVisa}">
-                                <label>Nro tarjeta</label>
-                                <input class="form-control" type="number" ng-model="nro" placeholder="Nro de la tarjeta" ng-maxlength="16" ng-minlenght="16" required/>
+                                <label><b> Número tarjeta </b></label>
+                                <input class="form-control" type="number" name="nro" ng-model="nro" ng-maxlength="16" ng-minlenght="16" ng-pattern="/^[0-9]{16}$/" required/>
                                 <label class="control-label" ng-show="(myForm.nro.$error.required && myForm.nro.$touched) || !nroVisa">
-                                            Solo aceptamos tarjetas VISA.
-                                    </label>
+                                   Ingrese un número de tarjeta válido
+                                </label>
+
+                                <label class="control-label" ng-show="(myForm.nro.$error.minlenght || myForm.nro.$error.pattern ||myForm.nro.$error.maxlength)">
+                                    Formato invalido.
+                                </label>
                               </div>
                             
                               <div class="form-group col-md-12" ng-class="{'has-error': (myForm.codigo.$invalid && myForm.codigo.$touched)}">
-                                <label>Código de seguridad</label>
-                                <input class="form-control" type="number" name="codigo" ng-model="codigo" placeholder="Código" ng-maxlength="3" required/>
-                                <label class="control-label" ng-show="myForm.codigo.$error.required && myForm.codigo.$touched">
-                                            Ingrese código de seguridad.
-                                    </label>
+                                  <label><b>Código de seguridad</b></label>
+                                  <input class="form-control" type="number" name="codigo" ng-model="codigo" ng-pattern="/^[0-9]{3}$/" ng-maxlength="3" required />
+                                  <label class="control-label" ng-show="myForm.codigo.$error.required && myForm.codigo.$touched">
+                                      Ingrese código de seguridad.
+                                  </label>
+                                  <label class="control-label" ng-show="myForm.codigo.$error.pattern">
+                                      Formato invalido.
+                                  </label>
                               </div>
-                                   <div class="form-group col-md-12" ng-class="{'has-error': (myForm.fecha.$invalid && myForm.fecha.$touched)}">
-                                <label>Fecha de vencimiento</label>
-                                <input class="form-control" placeholder="MM/AA" name="fecha" ng-model="fecha" required/>
-                                <label class="control-label" ng-show="(myForm.fecha.$error.required && myForm.fecha.$touched)">
-                                            Fecha incorrecta.
-                                    </label>
+
+
+
+                              <div class="form-group col-md-12" ng-class="{'has-error': (myForm.fecha.$invalid && myForm.fecha.$touched)}">
+                                  <label><b>Fecha de vencimiento</b></label>
+                                  <input class="form-control" placeholder="MM/AA" name="fecha" ng-model="fecha" ng-pattern="/^[0-9]{2}[/][0-9]{2}$/" required />
+                                  <label class="control-label" ng-show="(myForm.fecha.$error.pattern)">
+                                      Formato invalido.
+                                  </label>
+                                  <label class="control-label" ng-show="(myForm.fecha.$error.required && myForm.fecha.$touched)">
+                                      Ingrese fecha de vencimiento
+                                  </label>
+
+
+
                               </div>
                             
                            
-                           <div class="pull-right">
-                                 <button class="btn btn-primary" ng-click="Pagar()">Pagar</button>
+                           <div class="">
+                                 <button class="btn btn-primary offset-8" ng-click="Pagar()">Pagar</button>
                                </div>
                              
                             
@@ -92,12 +114,7 @@
         </div>
             </div>
             
-                                    <div class="pull-right" ng-show="mostrarResultado">
-                                        
-                                        <div class="alert" ng-class="{'alert-success': aceptado, 'alert-danger': !aceptado}">
-                                        {{mensaje}}
-                                        </div>
-                                    </div>
+
         </div>
 
 

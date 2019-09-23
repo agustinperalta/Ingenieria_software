@@ -16,10 +16,10 @@ function setUpClickListener(map) {
             ((coord.lat > 0) ? ' N' : ' S') +
             ' ' + Math.abs(coord.lng.toFixed(4)) +
             ((coord.lng > 0) ? ' E' : ' O'));
-        // Extra oara mostrr coordenadas
+        // Extra para mostrar coordenadas en el DOM
         coordenadas = [coord.lat.toFixed(4), coord.lng.toFixed(4)];
-        document.getElementById("coordenadas").innerHTML =
-            "Coordenadas: " + coordenadas[0] + ((coord.lat > 0) ? ' N' : ' S') + ", " + coordenadas[1] + ((coord.lng > 0) ? ' E' : ' O');
+        var txt = coordenadas[0] + ", " + coordenadas[1];
+        $('#coordenadas').attr('value', txt);
 
     });
 }
