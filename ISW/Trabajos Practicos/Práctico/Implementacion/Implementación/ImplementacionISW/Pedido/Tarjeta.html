@@ -56,7 +56,7 @@
                             
                               <div class="form-group col-md-12" ng-class="{'has-error': (myForm.nroDoc.$invalid && myForm.nroDoc.$touched) || !nroVisa}">
                                 <label><b> Número tarjeta </b></label>
-                                <input class="form-control" type="number" name="nro" ng-model="nro" ng-maxlength="16" ng-minlenght="16" ng-pattern="/^[0-9]{16}$/" required/>
+                                <input class="form-control" type="number" name="nro" ng-model="nro" min="4000000000000000" max="4999999999999999" ng-maxlength="16" ng-minlenght="16" ng-pattern="/^[0-9]{16}$/" required/>
                                 <label class="control-label" ng-show="(myForm.nro.$error.required && myForm.nro.$touched) || !nroVisa">
                                    Ingrese un número de tarjeta válido
                                 </label>
