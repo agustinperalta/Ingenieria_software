@@ -95,7 +95,7 @@
                             
                            
                            <div class="">
-                                 <button class="btn btn-primary offset-8" ng-click="Pagar()">Pagar</button>
+                                 <button class="btn btn-primary offset-8" ng-disabled="myForm.$invalid || myForm.$error.pattern || myForm.$error.required" ng-click="Pagar()">Pagar</button>
                                </div>
                              
                             

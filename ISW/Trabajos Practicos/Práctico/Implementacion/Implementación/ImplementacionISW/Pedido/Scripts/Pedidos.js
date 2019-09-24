@@ -2,6 +2,7 @@
 app.controller("PedidoController", function ($scope) {
     $scope.modoMapa=true;
     $scope.loantesposible = false;
+    $scope.modoTarjeta=true;
 
     // Ambas funciones togglean el modo de vista
     $scope.chk_true = function () {
@@ -10,6 +11,18 @@ app.controller("PedidoController", function ($scope) {
     $scope.chk_false = function () {
         $scope.modoMapa = false;
     };
+
+    //Ambas funciones togglean el modo vista de pago
+    $scope.chk_pagoT = function () {
+        $scope.modoTarjeta = true;
+        console.log($scope.modoTarjeta);
+    };
+    $scope.chk_pagoE = function () {
+        $scope.modoTarjeta = false;
+        console.log($scope.modoTarjeta);
+        
+    };
+    
 
 
     // Carga y muestra el nombre de la foto
@@ -96,7 +109,13 @@ app.controller("PedidoController", function ($scope) {
         }; 
 
         if ($scope.ok) {
+            if ($scope.modoTarjeta) {
             window.location = 'Tarjeta.html';
+            };
+            if (!$scope.modoTarjeta) {
+
+            window.location = 'Efectivo.html';
+            };
         };
 
 

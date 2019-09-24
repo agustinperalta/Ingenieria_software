@@ -60,7 +60,7 @@ angular
             {
                 $scope.aceptado= true;
                 console.log("paso true");
-                $scope.mensaje = "Se realizó el pago correctamente!";
+                $scope.mensaje = "Se realizó el pago correctamente, tu pedido está en camino";
             }
             else {
                 $scope.aceptado= false;
@@ -69,6 +69,10 @@ angular
             }
         }
 
+        $scope.Listo = function () {
+            $scope.mensaje = "Tu pedido se registro correctamente y está en camino";
+            $scope.mostrarResultado = true;
+        };
     
   }]);
 
