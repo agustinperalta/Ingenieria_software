@@ -3,7 +3,7 @@
     <Files>
       <File FileName="Pedido/Index.html" Line="83" Column="38" />
       <File FileName="Pedido/Scripts/Pedidos.js" />
-      <File FileName="Pedido/Tarjeta.html" Line="25" Column="117" />
+      <File FileName="Pedido/Tarjeta.html" />
       <File FileName="Pedido/app/tarjetaController.js" />
       <File FileName="Pedido/Scripts/Mapa.js" />
       <File FileName="Pedido/Content/Site.css" />

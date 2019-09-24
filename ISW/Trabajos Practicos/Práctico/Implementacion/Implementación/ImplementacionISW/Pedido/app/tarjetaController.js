@@ -76,7 +76,7 @@ angular
         }
         
         
-        $timeout(timer, 1000);       
+        $timeout(timer, 5000);       
         
 
         $scope.Pagar = function () {

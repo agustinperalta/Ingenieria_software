@@ -77,23 +77,25 @@
 
 
 
+            <!--DIRECCION PEDIDO-->
             <div class="form-row mt-2">
                 <div class="col-12 col-form-label text-center mb-2 alert alert-info"><b>Dirección Comercio</b></div>
             </div>
             <div class="form-row ml-2">
                 <div class="col-6 " ng-click="chk_false()">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1">
+                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios1" value="option1">
                     <label class="form-check-label" for="exampleRadios1">
                         Ingresar Dirección
                     </label>
                 </div>
                 <div class="col-6" ng-click="chk_true()">
-                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2" checked>
+                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2" checked>
                     <label class="form-check-label" for="exampleRadios2">
                         Utilizar Mapa
                     </label>
                 </div>
             </div>
+
             <div ng-show="!modoMapa">
 
                 <div class="form-group col-md-12" ng-class="{'has-error': (FormPedido.calleComercio.$invalid && FormPedido.calleComercio.$touched)}">
@@ -157,7 +159,7 @@
 
             <div class="form-group col-md-12" ng-class="{'has-error': (FormPedido.nroEntrega.$invalid && FormPedido.nroEntrega.$touched)}">
                 <label><b>Número</b>(*)</label>
-                <input class="form-control" type="text" id="nroEntrega" name="nroEntrega" ng-model="nroEntrega" required />
+                <input class="form-control" type="number" id="nroEntrega" name="nroEntrega" ng-model="nroEntrega" required />
                 <label class="control-label" ng-show="FormPedido.nroEntrega.$error.required && FormPedido.nroEntrega.$touched">
                     Ingrese el número de la calle
                 </label>
@@ -195,13 +197,13 @@
 
                 <div class="form-row mt-2">
                     <div class="col-12">
-                        <label for="Fecha" class=""><b>Fecha</b></label>
+                        <label id="Fecha" class=""><b>Fecha</b></label>
                     </div>
                 </div>
 
                 <div class="form-row mt-2">
                     <div class="col-12">
-                        <input id="fecha" type="date" class="form-control" />
+                        <input id="fecha" type="date" ng-model="fecha" class="form-control" />
                     </div>
                 </div>
                 <div class="form-row mt-2">
@@ -236,13 +238,13 @@
             <div class="form-row ml-2">
                 <div class="col-6 " ng-click="chk_pagoT()">
                     <input class="form-check-input" type="radio" name="pago" id="exampleRadio1" value="option1" checked>
-                    <label class="form-check-label" for="exampleRadios1">
+                    <label class="form-check-label" for="exampleRadio1">
                         Tarjeta
                     </label>
                 </div>
                 <div class="col-6" ng-click="chk_pagoE()">
                     <input class="form-check-input" type="radio" name="pago" id="exampleRadio2" value="option2">
-                    <label class="form-check-label" for="exampleRadios2">
+                    <label class="form-check-label" for="exampleRadio2">
                         Efectivo
                     </label>
                 </div>

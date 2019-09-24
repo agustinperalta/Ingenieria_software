@@ -54,7 +54,36 @@ app.controller("PedidoController", function ($scope) {
     // VALIDACIONES para pasar a la pantalla TARJETA
     $scope.validar = function () {
         $scope.ok = true;
-        
+
+        // FECHAS
+        if (!$scope.loantesposible) {
+            $scope.fechaEntrega = $scope.manejarfecha($scope.fecha);
+            $scope.fechaHoy = $scope.manejarfecha(new Date());
+            if ($scope.fechaEntrega[0] === $scope.fechaHoy[0]) {
+                if (parseInt($scope.fechaEntrega[1],10) === parseInt($scope.fechaHoy[1],10)) {
+                    if (parseInt($scope.fechaEntrega[2],10) > parseInt($scope.fechaHoy[2],10)) {
+                        // ok
+                        $scope.ok = true;
+                    } else {
+                        // no
+                        $scope.ok = false;
+                    };
+                } else if (parseInt($scope.fechaEntrega[1],10) > parseInt($scope.fechaHoy[1],10)) {
+                    //ok
+                    $scope.ok = true;
+                } else {
+                    // no
+                    $scope.ok = false;
+                };
+            } else if ($scope.fechaEntrega[0] > $scope.fechaHoy[0]) {
+                //ok
+                $scope.ok = true;
+            } else {
+                // no
+                $scope.ok = false;
+            };
+        };
+
         // DIRECC ENTREGA
         if ($scope.cdadEntrega == null) {
             $('#cdadEntrega').addClass("ng-invalid", "ng-touched");
@@ -110,17 +139,27 @@ app.controller("PedidoController", function ($scope) {
 
         if ($scope.ok) {
             if ($scope.modoTarjeta) {
-            window.location = 'Tarjeta.html';
+                window.location = 'Tarjeta.html';
             };
             if (!$scope.modoTarjeta) {
-
-            window.location = 'Efectivo.html';
+                window.location = 'Efectivo.html';
             };
         };
 
 
     };
 
+    $scope.manejarfecha = function ($fecha) {
+        var yyyy = $fecha.getFullYear();
+        var mm = $fecha.getMonth() + 1;
+        var dd = $fecha.getDate();
+        if (dd < 10)
+            dd = '0' + dd; //agrega cero si el menor de 10
+
+        if (mm < 10)
+            mm = '0' + mm; //agrega cero si el menor de 10
+        return [yyyy, mm, dd];
+    };
 
     
 });
