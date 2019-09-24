@@ -54,17 +54,18 @@
                                 
                               </div>
                             
-                              <div class="form-group col-md-12" ng-class="{'has-error': (myForm.nroDoc.$invalid && myForm.nroDoc.$touched) || !nroVisa}">
+                            <div class="form-group col-md-12" ng-class="{'has-error': (myForm.nroDoc.$invalid && myForm.nroDoc.$touched) || !nroVisa}">
                                 <label><b> Número tarjeta </b></label>
-                                <input class="form-control" type="number" name="nro" ng-model="nro" ng-maxlength="16" ng-minlenght="16" ng-pattern="/^[0-9]{16}$/" required/>
+                                <input class="form-control" type="number" name="nro" ng-model="nro" ng-maxlength="16" ng-minlenght="16" ng-pattern="/^[0-9]{16}$/" required />
                                 <label class="control-label" ng-show="(myForm.nro.$error.required && myForm.nro.$touched) || !nroVisa">
-                                   Ingrese un número de tarjeta válido
+                                    Ingrese un número de tarjeta válido
                                 </label>
+                             
 
                                 <label class="control-label" ng-show="(myForm.nro.$error.minlenght || myForm.nro.$error.pattern ||myForm.nro.$error.maxlength)">
                                     Formato invalido.
                                 </label>
-                              </div>
+                            </div>
                             
                               <div class="form-group col-md-12" ng-class="{'has-error': (myForm.codigo.$invalid && myForm.codigo.$touched)}">
                                   <label><b>Código de seguridad</b></label>
@@ -116,19 +117,6 @@
             
 
         </div>
-
-
-         
-                                
-                                
-                              
-
-
-
-
-
-
-
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
