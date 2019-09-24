@@ -1,7 +1,7 @@
 ﻿var app = angular.module("PedidoApp", []);
 app.controller("PedidoController", function ($scope) {
     $scope.modoMapa=true;
-    $scope.loantesposible = false;
+    $scope.loantesposible = true;
     $scope.modoTarjeta=true;
 
     // Ambas funciones togglean el modo de vista
@@ -56,24 +56,26 @@ app.controller("PedidoController", function ($scope) {
         $scope.ok = true;
 
         // FECHAS
-        if (!$scope.loantesposible) {
+        if (!$scope.loantesposible && $scope.fechaEntrega != null) {
             $scope.fechaEntrega = $scope.manejarfecha($scope.fecha);
             $scope.fechaHoy = $scope.manejarfecha(new Date());
             if ($scope.fechaEntrega[0] === $scope.fechaHoy[0]) {
-                if (parseInt($scope.fechaEntrega[1],10) === parseInt($scope.fechaHoy[1],10)) {
-                    if (parseInt($scope.fechaEntrega[2],10) > parseInt($scope.fechaHoy[2],10)) {
+                if (parseInt($scope.fechaEntrega[1], 10) === parseInt($scope.fechaHoy[1], 10)) {
+                    if (parseInt($scope.fechaEntrega[2], 10) > parseInt($scope.fechaHoy[2], 10)) {
                         // ok
                         $scope.ok = true;
                     } else {
                         // no
                         $scope.ok = false;
+                         $("#fecha").focus();
                     };
-                } else if (parseInt($scope.fechaEntrega[1],10) > parseInt($scope.fechaHoy[1],10)) {
+                } else if (parseInt($scope.fechaEntrega[1], 10) > parseInt($scope.fechaHoy[1], 10)) {
                     //ok
                     $scope.ok = true;
                 } else {
                     // no
                     $scope.ok = false;
+                     $("#fecha").focus();
                 };
             } else if ($scope.fechaEntrega[0] > $scope.fechaHoy[0]) {
                 //ok
@@ -81,7 +83,11 @@ app.controller("PedidoController", function ($scope) {
             } else {
                 // no
                 $scope.ok = false;
+                 $("#fecha").focus();
             };
+        } else {
+            $scope.ok = false;
+            $("#fecha").focus();
         };
 
         // DIRECC ENTREGA
@@ -89,17 +95,17 @@ app.controller("PedidoController", function ($scope) {
             $('#cdadEntrega').addClass("ng-invalid", "ng-touched");
             $('#cdadEntrega').focus();
             $scope.ok = false;
-        };
+        } else { $scope.ok = true;};
         if ($scope.nroEntrega == null) {
             $('#nroEntrega').addClass("ng-invalid", "ng-touched");
             $('#nroEntrega').focus();
             $scope.ok = false;
-        };
+        }else { $scope.ok = true;};
         if ($scope.calleEntrega == null ){
             $('#calleEntrega').addClass("ng-invalid", "ng-touched");
             $('#calleEntrega').focus();
             $scope.ok = false;
-        };
+        }else { $scope.ok = true;};
         
        
         // DIRECC COMERCIO
@@ -136,6 +142,7 @@ app.controller("PedidoController", function ($scope) {
             $('#desc').focus();
             $scope.ok = false;
         }; 
+        console.log($scope.ok);
 
         if ($scope.ok) {
             if ($scope.modoTarjeta) {
@@ -150,15 +157,17 @@ app.controller("PedidoController", function ($scope) {
     };
 
     $scope.manejarfecha = function ($fecha) {
-        var yyyy = $fecha.getFullYear();
-        var mm = $fecha.getMonth() + 1;
-        var dd = $fecha.getDate();
-        if (dd < 10)
-            dd = '0' + dd; //agrega cero si el menor de 10
+        if ($fecha != null) {
+            var yyyy = $fecha.getFullYear();
+            var mm = $fecha.getMonth() + 1;
+            var dd = $fecha.getDate();
+            if (dd < 10)
+                dd = '0' + dd; //agrega cero si el menor de 10
 
-        if (mm < 10)
-            mm = '0' + mm; //agrega cero si el menor de 10
-        return [yyyy, mm, dd];
+            if (mm < 10)
+                mm = '0' + mm; //agrega cero si el menor de 10
+            return [yyyy, mm, dd];
+        };
     };
 
     

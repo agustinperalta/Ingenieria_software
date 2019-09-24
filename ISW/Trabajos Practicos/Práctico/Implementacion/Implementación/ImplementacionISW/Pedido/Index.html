@@ -89,7 +89,7 @@
                     </label>
                 </div>
                 <div class="col-6" ng-click="chk_true()">
-                    <input class="form-check-input" type="radio" name="exampleRadios2" id="exampleRadios2" value="option2" checked>
+                    <input class="form-check-input" type="radio" name="exampleRadios1" id="exampleRadios2" value="option2" checked>
                     <label class="form-check-label" for="exampleRadios2">
                         Utilizar Mapa
                     </label>
@@ -108,7 +108,7 @@
 
                 <div class="form-group col-md-12" ng-class="{'has-error': (FormPedido.nroComercio.$invalid && FormPedido.nroComercio.$touched)}">
                     <label><b>Número</b>(*)</label>
-                    <input class="form-control" type="text" id="nroComercio" name="nroComercio" ng-model="nroComercio" required />
+                    <input class="form-control" type="number" id="nroComercio" name="nroComercio" ng-model="nroComercio" required />
                     <label class="control-label" ng-show="FormPedido.nroComercio.$error.required && FormPedido.nroComercio.$touched">
                         Ingrese el número del comercio
                     </label>
